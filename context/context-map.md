@@ -4,6 +4,7 @@
 - `context/architecture.md` — Current system structure and major integrations.
 - `context/patterns.md` — Reusable implementation and operational patterns.
 - `context/glossary.md` — Shared terminology and domain definitions.
+- `context/pr-feedback/slack-workflow.md` — Current-state contract for the PR feedback Slack workflow.
 - `context/plans/` — Active implementation plans.
 - `context/decisions/` — Durable architecture and product decisions.
 - `context/handovers/` — Task handoff notes for future sessions.

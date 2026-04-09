@@ -1,0 +1,13 @@
+node_modules/
+dist/
+
+# TypeScript
+*.js.map
+*.d.ts
+tsconfig.tsbuildinfo
+
+# Nix
+result
+result-*
+.direnv/
+.envrc

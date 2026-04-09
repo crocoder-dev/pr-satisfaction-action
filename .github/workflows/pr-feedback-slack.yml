@@ -1,0 +1,38 @@
+name: PR Feedback Slack Workflow
+
+on:
+  pull_request:
+    types:
+      - closed
+
+jobs:
+  notify-participants:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: read
+      pull-requests: read
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build action code
+        run: npm run build
+
+      - name: Send PR feedback Slack DMs
+        run: node dist/src/pr-feedback/action.js
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          GITHUB_TO_SLACK_JSON: ${{ secrets.GITHUB_TO_SLACK_JSON }}
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+          SLACK_WORKFLOW_URL: ${{ secrets.SLACK_WORKFLOW_URL }}
